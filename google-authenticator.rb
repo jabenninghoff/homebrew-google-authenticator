@@ -8,22 +8,14 @@ class GoogleAuthenticator < Formula
   depends_on "libtool" => :build
   depends_on "qrencode" => :recommended
 
-  fails_with :clang do
-    build 700
-    cause <<-EOS.undent
-      clang version 7 fails to compile pam_google_authenticator.c as reported in:
-      https://github.com/google/google-authenticator/issues/520
-      https://github.com/google/google-authenticator/issues/527
-      with: "clang: error: unable to execute command: Segmentation fault: 11"
-      EOS
-  end
-
   def install
-    cd "libpam" do
+    cd "libpam/src" do
       # fix error in filename submitted in pull request:
       # https://github.com/google/google-authenticator/pull/513
       inreplace "google-authenticator.c", "libqrencode.dylib.3", "libqrencode.3.dylib"
+    end
 
+    cd "libpam" do
       system "./bootstrap.sh"
 
       system "./configure", "--disable-dependency-tracking",
