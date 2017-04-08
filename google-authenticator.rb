@@ -1,7 +1,8 @@
 class GoogleAuthenticator < Formula
   desc "PAM module for two-factor authentication"
-  homepage "https://github.com/google/google-authenticator"
-  head "https://github.com/google/google-authenticator.git"
+  homepage "https://github.com/google/google-authenticator-libpam"
+  url "https://github.com/google/google-authenticator-libpam/archive/1.03.tar.gz"
+  sha256 "674d494d09403f2dbe98896f80dcca30f19236b1eb267f2e989af0b0cb2f6971"
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
@@ -9,21 +10,19 @@ class GoogleAuthenticator < Formula
   depends_on "qrencode" => :recommended
 
   def install
-    cd "libpam/src" do
+    cd "src" do
       # fix error in filename submitted in pull request:
       # https://github.com/google/google-authenticator/pull/513
       inreplace "google-authenticator.c", "libqrencode.dylib.3", "libqrencode.3.dylib"
     end
 
-    cd "libpam" do
-      system "./bootstrap.sh"
+    system "./bootstrap.sh"
 
-      system "./configure", "--disable-dependency-tracking",
-                            "--disable-silent-rules",
-                            "--prefix=#{prefix}"
+    system "./configure", "--disable-dependency-tracking",
+                          "--disable-silent-rules",
+                          "--prefix=#{prefix}"
 
-      system "make", "install"
-    end
+    system "make", "install"
   end
 
   def caveats; <<-EOS.undent
@@ -47,6 +46,6 @@ class GoogleAuthenticator < Formula
   end
 
   test do
-    system "google-authenticator", "--help"
+    system "#{bin}/google-authenticator", "--help"
   end
 end
