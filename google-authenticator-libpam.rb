@@ -1,4 +1,4 @@
-class GoogleAuthenticator < Formula
+class GoogleAuthenticatorLibpam < Formula
   desc "PAM module for two-factor authentication"
   homepage "https://github.com/google/google-authenticator-libpam"
   url "https://github.com/google/google-authenticator-libpam/archive/1.03.tar.gz"
