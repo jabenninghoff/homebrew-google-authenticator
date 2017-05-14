@@ -11,8 +11,8 @@ class GoogleAuthenticatorLibpam < Formula
 
   def install
     cd "src" do
-      # fix error in filename submitted in pull request:
-      # https://github.com/google/google-authenticator/pull/513
+      # fix error in filename. Upstream pull request submitted:
+      # https://github.com/google/google-authenticator-libpam/pull/62
       inreplace "google-authenticator.c", "libqrencode.dylib.3", "libqrencode.3.dylib"
     end
 
