@@ -19,11 +19,11 @@ google-authenticator --force --time-based --disallow-reuse --rate-limit=3 --rate
 ```
 
 Add one of the following to one or more services in `/etc/pam.d/` (typically `/etc/pam.d/sshd`):
-```sh
+```
 auth       required       /usr/local/lib/security/pam_google_authenticator.so
 ```
 to require use of Google Authenticator, or:
-```sh
+```
 auth       required       /usr/local/lib/security/pam_google_authenticator.so nullok
 ```
 to allow users to skip Google Authenticator if they haven't set it up.
