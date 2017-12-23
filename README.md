@@ -1,11 +1,9 @@
 # homebrew-google-authenticator
-Homebrew Formula for `google/google-authenticator-libpam` PAM module.
-
-**NOTE:** this project is deprecated; use the official [Homebrew](http://brew.sh) formula instead.
+Homebrew Formula for `google/google-authenticator-libpam` PAM module
 
 ### Installation
 
-Install using [Homebrew](http://brew.sh)
+This formula has been merged into [homebrew-core](https://github.com/Homebrew/homebrew-core/blob/master/Formula/google-authenticator-libpam.rb).
 
 ### Post-Installation Setup
 
