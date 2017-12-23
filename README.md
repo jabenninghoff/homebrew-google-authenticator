@@ -1,27 +1,29 @@
 # homebrew-google-authenticator
-Homebrew Formula for `google/google-authenticator-libpam` PAM module
+Homebrew Formula for `google/google-authenticator-libpam` PAM module.
+
+**NOTE:** this project is deprecated; use the official [Homebrew](http://brew.sh) formula instead.
 
 ### Installation
 
-Install using [Homebrew](http://brew.sh) and `brew tap`.
+Install using [Homebrew](http://brew.sh)
 
 ### Post-Installation Setup
 
 For each user on the system, run `google-authenticator` interactively using:
-```
+```sh
 google-authenticator
 ```
 or non-interactively with the secure defaults:
-```
+```sh
 google-authenticator --force --time-based --disallow-reuse --rate-limit=3 --rate-time=30 --window-size=3
 ```
 
 Add one of the following to one or more services in `/etc/pam.d/` (typically `/etc/pam.d/sshd`):
-```
+```sh
 auth       required       /usr/local/lib/security/pam_google_authenticator.so
 ```
 to require use of Google Authenticator, or:
-```
+```sh
 auth       required       /usr/local/lib/security/pam_google_authenticator.so nullok
 ```
 to allow users to skip Google Authenticator if they haven't set it up.
